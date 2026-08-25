@@ -16,10 +16,22 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
+const sidebarComponents = {
+  "01": AppSidebar01,
+  "02": AppSidebar02,
+  "03": AppSidebar03,
+} as const;
+
+type SidebarVariant = keyof typeof sidebarComponents;
+
+const sidebarVariant =
+  (import.meta.env.VITE_APP_SIDEBAR as SidebarVariant) || "01";
+const AppSidebar = sidebarComponents[sidebarVariant] ?? sidebarComponents["01"];
+
 export default function Page() {
   return (
     <SidebarProvider>
-      <AppSidebar01 />
+      <AppSidebar />
       <SidebarInset>
         <header className="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
           <SidebarTrigger className="-ml-1" />
