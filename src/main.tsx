@@ -4,16 +4,26 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import "@/index.css";
 import App from "@/App";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { DashboardPage } from "@/pages/dashboard-page";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        index: true,
+        element: <DashboardPage />,
+      },
+    ],
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />,
+    <TooltipProvider>
+      <RouterProvider router={router} />
+    </TooltipProvider>
   </StrictMode>,
 );
