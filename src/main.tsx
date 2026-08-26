@@ -20,6 +20,18 @@ const router = createBrowserRouter([
   },
 ]);
 
+const appFonts = ["noto-sans-thai", "kanit", "sarabun"] as const;
+type AppFont = (typeof appFonts)[number];
+function isAppFont(value: unknown): value is AppFont {
+  return typeof value === "string" && appFonts.includes(value as AppFont);
+}
+const requestedFont = import.meta.env.VITE_APP_FONT;
+const appFont: AppFont = isAppFont(requestedFont)
+  ? requestedFont
+  : "noto-sans-thai";
+
+document.documentElement.dataset.font = appFont;
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <TooltipProvider>

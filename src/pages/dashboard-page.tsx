@@ -1,3 +1,3 @@
 export function DashboardPage() {
-  return <div>Dashboard</div>;
+  return <div>สวัสดีครับ ภาษาไทย</div>;
 }
