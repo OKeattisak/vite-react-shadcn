@@ -6,6 +6,8 @@ import "@/index.css";
 import App from "@/App";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DashboardPage } from "@/pages/dashboard-page";
+import { ThemeSync } from "@/components/theme-sync";
+import "@/lib/i18n";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,7 @@ document.documentElement.dataset.font = appFont;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <ThemeSync />
     <TooltipProvider>
       <RouterProvider router={router} />
     </TooltipProvider>
