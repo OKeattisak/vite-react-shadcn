@@ -1,26 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import "@/index.css";
-import App from "@/App";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { DashboardPage } from "@/pages/dashboard-page";
 import { ThemeSync } from "@/components/theme-sync";
 import "@/lib/i18n";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <DashboardPage />,
-      },
-    ],
-  },
-]);
+import { router } from "@/app/router";
 
 const appFonts = ["noto-sans-thai", "kanit", "sarabun"] as const;
 type AppFont = (typeof appFonts)[number];
