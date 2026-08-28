@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import * as Sentry from "@sentry/react";
 import { HouseIcon, RefreshCwIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { isRouteErrorResponse, Link, useRouteError } from "react-router";
@@ -6,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 
 export function RouteErrorPage() {
   const error = useRouteError();
+
   const { t } = useTranslation();
 
   const status = isRouteErrorResponse(error) ? error.status : 500;
@@ -14,6 +17,12 @@ export function RouteErrorPage() {
     import.meta.env.DEV && error instanceof Error
       ? error.message
       : t("errors.generic.description");
+
+  useEffect(() => {
+    if (error instanceof Error) {
+      Sentry.captureException(error);
+    }
+  }, [error]);
 
   return (
     <main className="flex min-h-svh items-center justify-center p-6">
