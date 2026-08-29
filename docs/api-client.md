@@ -153,6 +153,13 @@ Supported kinds are `http`, `network`, `timeout`, and `unknown`.
 The error may also include the HTTP status, server code, response details, and
 `x-request-id`.
 
+## Server state
+
+Use TanStack Query to cache and synchronize data returned by this API layer.
+Axios remains responsible for transport and error normalization. See
+[`docs/tanstack-query.md`](./tanstack-query.md) for query keys, pagination, and
+mutation examples.
+
 ## Authentication
 
 The API layer does not decide where credentials are stored or how navigation
@@ -175,3 +182,9 @@ cookies are required.
 Token refresh and retry logic should be implemented with the chosen auth system,
 not inside the generic scaffold client. This prevents retry loops and duplicate
 refresh requests.
+
+## Forms
+
+Use `applyApiFieldErrors` to map validation details from a 400 or 422
+`ApiError` into React Hook Form. See [`docs/forms.md`](./forms.md) for the typed
+Zod form and TanStack Query mutation example.
